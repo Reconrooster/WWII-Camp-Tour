@@ -22,20 +22,12 @@
   </style>
 </head>
 <body>
-  <div id="camp" aria-label="Interactive WWII camp tour"></div>
+  <div id="camp" aria-label="Interactive World War II camp tour"></div>
 
   <script>
-    // Replace each example URL with the published address of that exhibit.
-    const exhibitLinks = {
-      childers: 'https://sites.google.com/view/YOUR-SITE/ernest-childers',
-      nez: 'https://sites.google.com/view/YOUR-SITE/chester-nez',
-      medicineCrow: 'https://sites.google.com/view/YOUR-SITE/joe-medicine-crow',
-      lebeau: 'https://sites.google.com/view/YOUR-SITE/marcella-lebeau'
-    };
-
     pannellum.viewer('camp', {
       type: 'equirectangular',
-      panorama: 'camp.png',
+      panorama: './camp.png',
       autoLoad: true,
 
       haov: 100,
@@ -52,7 +44,7 @@
 
       hotSpots: [
         {
-          // Front left tent
+          // Front left
           pitch: -2,
           yaw: -25,
           type: 'info',
@@ -61,31 +53,31 @@
           attributes: { target: '_self' }
         },
         {
-          // Second tent on the left
+          // Second on the left
           pitch: 1,
           yaw: -8,
           type: 'info',
-          text: 'Enter Chester Nez’s exhibit',
-          URL: exhibitLinks.nez,
-          attributes: { target: '_blank', rel: 'noopener' }
+          text: 'Enter Chester Nez’s tent',
+          URL: './nez-tent.html',
+          attributes: { target: '_self' }
         },
         {
-          // Front right tent
+          // Front right
           pitch: -2,
           yaw: 29,
           type: 'info',
-          text: 'Enter Joe Medicine Crow’s exhibit',
-          URL: exhibitLinks.medicineCrow,
-          attributes: { target: '_blank', rel: 'noopener' }
+          text: 'Enter Joe Medicine Crow’s tent',
+          URL: './medicine-crow-tent.html',
+          attributes: { target: '_self' }
         },
         {
-          // Second tent on the right
-          pitch: 4,
+          // Second on the right, above Marcella’s sign
+          pitch: 6,
           yaw: 20,
           type: 'info',
-          text: 'Enter Marcella LeBeau’s exhibit',
-          URL: exhibitLinks.lebeau,
-          attributes: { target: '_blank', rel: 'noopener' }
+          text: 'Enter Marcella LeBeau’s tent',
+          URL: './lebeau-tent.html',
+          attributes: { target: '_self' }
         }
       ]
     });
