@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WWII Camp Tour</title>
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css">
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #171b16;
+    }
+
+    #camp {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="camp" aria-label="Interactive WWII camp tour"></div>
+
+  <script>
+    // Replace each example URL with the published address of that exhibit.
+    const exhibitLinks = {
+      childers: 'https://sites.google.com/view/YOUR-SITE/ernest-childers',
+      nez: 'https://sites.google.com/view/YOUR-SITE/chester-nez',
+      medicineCrow: 'https://sites.google.com/view/YOUR-SITE/joe-medicine-crow',
+      lebeau: 'https://sites.google.com/view/YOUR-SITE/marcella-lebeau'
+    };
+
+    pannellum.viewer('camp', {
+      type: 'equirectangular',
+      panorama: 'camp.png',
+      autoLoad: true,
+
+      haov: 100,
+      vaov: 51,
+      hfov: 72,
+      minHfov: 35,
+      maxHfov: 95,
+      minYaw: -50,
+      maxYaw: 50,
+      minPitch: -25.5,
+      maxPitch: 25.5,
+      avoidShowingBackground: false,
+      hotSpotDebug: false,
+
+      hotSpots: [
+        {
+          // Front left tent
+          pitch: -2,
+          yaw: -25,
+          type: 'info',
+          text: 'Enter Ernest Childers’s exhibit',
+          URL: exhibitLinks.childers,
+          attributes: { target: '_blank', rel: 'noopener' }
+        },
+        {
+          // Second tent on the left
+          pitch: 1,
+          yaw: -8,
+          type: 'info',
+          text: 'Enter Chester Nez’s exhibit',
+          URL: exhibitLinks.nez,
+          attributes: { target: '_blank', rel: 'noopener' }
+        },
+        {
+          // Front right tent
+          pitch: -2,
+          yaw: 29,
+          type: 'info',
+          text: 'Enter Joe Medicine Crow’s exhibit',
+          URL: exhibitLinks.medicineCrow,
+          attributes: { target: '_blank', rel: 'noopener' }
+        },
+        {
+          // Second tent on the right
+          pitch: 1,
+          yaw: 20,
+          type: 'info',
+          text: 'Enter Marcella LeBeau’s exhibit',
+          URL: exhibitLinks.lebeau,
+          attributes: { target: '_blank', rel: 'noopener' }
+        }
+      ]
+    });
+  </script>
+</body>
+</html>
