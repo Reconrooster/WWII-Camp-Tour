@@ -4,151 +4,30 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inside Ernest Childers’s Tent</title>
-  <style>
-    body {
-      margin: 0;
-      color: #f7efd9;
-      background: #24251c;
-      font-family: system-ui, sans-serif;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 12px;
-    }
-
-    a { color: #ffe2a2; }
-
-    h1 {
-      margin: 8px 0 4px;
-      font-size: clamp(1.3rem, 3vw, 2rem);
-    }
-
-    p { margin: 0 0 12px; }
-
-    .scene { position: relative; }
-
-    .scene img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .marker {
-      position: absolute;
-      left: var(--x);
-      top: var(--y);
-      transform: translate(-50%, -50%);
-      display: grid;
-      place-items: center;
-      width: clamp(26px, 4vw, 40px);
-      aspect-ratio: 1;
-      border: 2px solid #fff4d6;
-      border-radius: 50%;
-      background: #24251c;
-      color: #fff4d6;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .marker:hover,
-    .marker:focus-visible {
-      background: #fff4d6;
-      color: #24251c;
-      outline: 2px solid #24251c;
-    }
-
-    .chapters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 24px;
-      padding-left: 26px;
-    }
-  </style>
 </head>
 <body>
   <main>
     <a href="./index.html">← Return to Camp</a>
     <h1>Inside Ernest Childers’s Tent</h1>
-    <p>Select a numbered object or a chapter below. Chapters open in a new tab.</p>
-
-    <div class="scene" id="tent">
+    <p>Select a numbered object or a chapter below. Published chapters open in a new tab.</p>
+    <div class="scene">
       <img src="childers-tent.png"
-           alt="Reconstructed WWII tent with a footlocker on the left,
-                a field table at the back, a jacket on the center pole,
-                and a duffle and cot on the right.">
+           alt="Childers’s tent with a beaded pouch, Thunderbird jacket, field table, and named duffle.">
     </div>
-
-    <ol class="chapters" id="chapters"></ol>
+    <p id="selection" role="status"></p>
+    <ol id="chapters"></ol>
   </main>
-
   <script>
-    // Replace each URL with the published Google Sites link for that chapter.
+    // Each row gives the object, chapter, x position, y position, and published URL.
     const exhibits = [
-      {
-        object: 'Beaded pouch on the footlocker',
-        chapter: 'Early Life and Muscogee Heritage',
-        x: 12, y: 49,
-        url: 'https://sites.google.com/view/YOUR-SITE/childers-early-life'
-      },
-      {
-        object: 'Duffle bag',
-        chapter: 'Enlistment and Training',
-        x: 65, y: 47,
-        url: 'https://sites.google.com/view/YOUR-SITE/childers-training'
-      },
-      {
-        object: 'Thunderbird jacket',
-        chapter: 'Unit and Wartime Service',
-        x: 51, y: 38,
-        url: 'https://sites.google.com/view/YOUR-SITE/childers-wartime-service'
-      },
-      {
-        object: 'Classified envelope',
-        chapter: 'Oliveto and the Medal of Honor',
-        x: 37, y: 34,
-        url: 'https://sites.google.com/view/YOUR-SITE/childers-medal-of-honor'
-      },
-      {
-        object: 'Folder on the field table',
-        chapter: 'Military Records and Sources',
-        x: 30, y: 42,
-        url: 'https://sites.google.com/view/YOUR-SITE/childers-records'
-      },
-      {
-        object: 'Lantern',
-        chapter: 'Life After the War',
-        x: 23, y: 29,
-        url: 'https://sites.google.com/view/YOUR-SITE/childers-postwar'
-      }
+      ['Beaded pouch', 'Early Life and Muscogee Heritage', 12, 55, 'PASTE_CHILDERS_EARLY_LIFE_URL'],
+      ['Duffle bag', 'Enlistment and Training', 64, 47, 'PASTE_CHILDERS_TRAINING_URL'],
+      ['Thunderbird jacket', 'Unit and Wartime Service', 49, 36, 'PASTE_CHILDERS_SERVICE_URL'],
+      ['Classified envelope', 'Oliveto and the Medal of Honor', 37, 39, 'PASTE_CHILDERS_MEDAL_URL'],
+      ['Folder', 'Military Records and Sources', 30, 40, 'PASTE_CHILDERS_RECORDS_URL'],
+      ['Lantern', 'Life After the War', 25, 32, 'PASTE_CHILDERS_POSTWAR_URL']
     ];
-
-    const tent = document.getElementById('tent');
-    const chapters = document.getElementById('chapters');
-
-    exhibits.forEach((exhibit, index) => {
-      const marker = document.createElement('a');
-      marker.className = 'marker';
-      marker.href = exhibit.url;
-      marker.target = '_blank';
-      marker.rel = 'noopener';
-      marker.textContent = index + 1;
-      marker.title = `${exhibit.object} — ${exhibit.chapter}`;
-      marker.setAttribute('aria-label', marker.title);
-      marker.style.setProperty('--x', `${exhibit.x}%`);
-      marker.style.setProperty('--y', `${exhibit.y}%`);
-      tent.append(marker);
-
-      const item = document.createElement('li');
-      const link = document.createElement('a');
-      link.href = exhibit.url;
-      link.target = '_blank';
-      link.rel = 'noopener';
-      link.textContent = exhibit.chapter;
-      item.append(link);
-      chapters.append(item);
-    });
   </script>
+  <script src="./tent-viewer.js"></script>
 </body>
 </html>
